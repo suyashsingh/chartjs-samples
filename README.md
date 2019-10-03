@@ -35,3 +35,5 @@ for more information.
     }
 </style>
 ```
+3. There is no default type of the chart. You will have to explicitely specify 
+the chart type else you will get an error.
