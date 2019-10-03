@@ -1,8 +1,12 @@
-# chartjs-samples
-Chart.js visualization samples
+# Chart.js Chart Samples
+Data visualization using Chart.js.
 
 ## Contents
-1. `hello-world-chart.html` Maiden voyage to charting using chartjs.
+1. `hello-world-chart.html`: Maiden voyage to charting using chartjs.
+2. `responsive-chart.html`: Integrating Chart.js with Bootstrap 4.
+3. `multiple-charts.html`: Multiple responsive charts in a page.
+4. `chart-with-animation-customization.html`: Changing the default animation type
+5. `chart-with-title-customization.html`: Enabling / Customizing chart title.
 
 ## Notes
 1. At bare minimum, a chart can be created using (chart customization options 
@@ -37,3 +41,39 @@ for more information.
 ```
 3. There is no default type of the chart. You will have to explicitely specify 
 the chart type else you will get an error.
+
+4. Animation can be customized as follows:
+
+```javascript
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: chartData,
+    options: {
+        animation: {
+           
+            duration: 500,  // Change the animation durarion, 0 for no animation
+            easing: "easeInQuad" // Change the animation type a.k.a easing function
+        }
+    }
+});
+```
+
+5. Title Customizations:
+
+```javascript
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: chartData,
+    options: {
+        title: {
+            display: true, // defaults to false
+            text: "Chart with Title Customization",
+            fontSize: 45,
+            fontFamily: 'Helvetica',
+            fontColor: '#212529',
+            fontStyle: 'bold',
+            position: 'bottom' // position of the chart title
+        }
+    }
+});
+```
