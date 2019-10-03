@@ -7,6 +7,7 @@ Data visualization using Chart.js.
 3. `multiple-charts.html`: Multiple responsive charts in a page.
 4. `chart-with-animation-customization.html`: Changing the default animation type
 5. `chart-with-title-customization.html`: Enabling / Customizing chart title.
+6. `chart-with-dynamic-data.html`: Bar chart with dynamic data
 
 ## Notes
 1. At bare minimum, a chart can be created using (chart customization options 
