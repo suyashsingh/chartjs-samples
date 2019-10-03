@@ -77,3 +77,14 @@ var myChart = new Chart(ctx, {
     }
 });
 ```
+6. Bar Width Customization: 
+
+```javascript
+var customizationOptions = {
+    scales: {
+        xAxes: [{
+        barThickness: 700
+        }]
+    }
+};
+```
