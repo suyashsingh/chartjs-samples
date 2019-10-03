@@ -1,0 +1,109 @@
+<!--
+    Chart with Dynamic Data
+    Random Number Generator Function: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+-->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Bar Chart with Dynamic Data</title>
+    <style>
+        /*
+            Disable text selection in the canvas, else when you click the
+            legend some text on the page might get selected, which is not 
+            desirable.
+        */
+        canvas {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none; /* Standard syntax */
+        }
+    </style>
+    <script>
+    /* Random Number Generator Function */
+    function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+    }
+
+    /* Wait till the entire page has loaded */
+    window.onload = function() {
+        var refreshInterval = 3000;
+
+        var chartData = {
+            labels: ['Sensor 1', 'Sensor 2', 'Sensor 3', 'Sensor 4', 'Sensor 5', 'Sensor 6', 'Sensor 7'],
+            datasets: [{
+                label: 'Sensor Data',
+                data: [10, 13, 12, 11, 13, 19, 12]
+            }]
+        };
+        
+        var chartOptions = {
+            title: {
+                display: true, // defaults to false
+                text: "Bar Chart with Dynamic Data",
+                fontSize: 45,
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        };
+
+        var ctx = document.getElementById('chartCanvas').getContext('2d');
+
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: chartData,
+            options: chartOptions
+        });
+
+        setInterval(function(){
+            console.log("Update Chart");
+            var dps = chartData.datasets[0].data;
+            for(var i = 0; i < dps.length; i++) {
+                dps[i] += getRandomInt(-10, 10);
+            }
+            
+            myChart.update();
+        }, refreshInterval);
+    }
+    </script>
+  </head>
+  <body>
+    <div class="jumbotron">
+        <h1>Dynamic Data</h1>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Canvas element where the chart will be rendered -->
+                <canvas id="chartCanvas"></canvas>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+     
+    <!-- Load  chart.js library from cdn-->
+     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"> </script>
+</body>
+</html>
